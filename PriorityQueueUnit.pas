@@ -1,4 +1,4 @@
-Unit PriorityQueueUnit;
+﻿Unit PriorityQueueUnit;
 
 Interface
 
@@ -51,14 +51,31 @@ Begin
 End;
 
 Procedure TPriorityQueue<TUser>.SortQueue;
+Var
+    I, J: Integer;
+    Temp: TPriorityQueueItem<TUser>;
 Begin
-    
+    For I := 1 To FList.Count - 1 Do
+    Begin
+        Temp := FList[I];
+        J := I - 1;
+
+        While (J >= 0) And (FList[J].Priority < Temp.Priority) Do
+        Begin
+            FList[J + 1] := FList[J];
+            Dec(J);
+        End;
+
+        FList[J + 1] := Temp;
+    End;
 End;
 
 Function TPriorityQueue<TUser>.Dequeue: TUser;
 Begin
     If IsEmpty Then
+    Begin
         Raise Exception.Create('Priority Queue is empty');
+    End;
 
     Result := FList.Last.Item;
     FList.Delete(FList.Count - 1);
@@ -67,7 +84,9 @@ End;
 Function TPriorityQueue<TUser>.Peek: TUser;
 Begin
     If IsEmpty Then
+    Begin
         Raise Exception.Create('Priority Queue is empty');
+    End;
 
     Result := FList.Last.Item;
 End;
