@@ -2,12 +2,14 @@ Unit UserUnit;
 
 Interface
 
+Uses
+    System.SysUtils;
+
 Type
     TRequest = Integer;
     TRequests = Array Of TRequest;
 
     TUser = Class
-    Private
         Name: Integer;
         IsProcessActive: Boolean;
         PriorityLvl: Byte;
