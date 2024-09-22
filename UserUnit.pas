@@ -7,9 +7,10 @@ Type
     TRequests = Array Of TRequest;
 
     TUser = Class
-        Number: Integer;
+    Private
+        Name: Integer;
         IsProcessActive: Boolean;
-        TPriorityLvl: Byte;
+        PriorityLvl: Byte;
         //Requests
         Requests: TRequests;
         RequestPointer: Integer;
@@ -19,12 +20,31 @@ Type
         //Wait
         IsProcessWait: Boolean;
         ProcessorWaitLength: Integer;
-    Private
-
     Public
-
+        Constructor Create(Name: Integer; PriorityLvl: Integer; Requests: TRequests);
+        Destructor Free();
     End;
 
 Implementation
+
+{ TUser }
+
+Constructor TUser.Create(Name: Integer; PriorityLvl: Integer; Requests: TRequests);
+Begin
+    Name := Name;
+    IsProcessActive := False;
+    PriorityLvl := PriorityLvl;
+    Requests := Requests;
+    RequestPointer := 0;
+    IsProcessWork := False;
+    ProcessorWorkLength := -1;
+    IsProcessWait := False;
+    ProcessorWaitLength := -1;
+End;
+
+Destructor TUser.Free;
+Begin
+    Requests := Nil;
+End;
 
 End.
