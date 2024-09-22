@@ -19,6 +19,7 @@ Type
 
     Public
         Constructor Create(ArrayOfUsers: TArrayOfUsers; TickTime: Integer; WaitTime: Integer);
+        Destructor Destroy;
     End;
 
 Implementation
@@ -31,5 +32,12 @@ Begin
     TickTime := TickTime;
     WaitTime := WaitTime;
 End;
+
+destructor TCore.Destroy;
+begin
+    Queue.Destroy();
+    Users := Nil;
+    inherited;
+end;
 
 End.
