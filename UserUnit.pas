@@ -10,7 +10,7 @@ Type
     TRequests = Array Of TRequest;
 
     TUser = Class
-        Name: Integer;
+        Name: String;
         IsProcessActive: Boolean;
         PriorityLvl: Byte;
         //Requests
@@ -23,7 +23,7 @@ Type
         IsProcessWait: Boolean;
         ProcessorWaitLength: Integer;
     Public
-        Constructor Create(Name: Integer; PriorityLvl: Integer; Requests: TRequests);
+        Constructor Create(Name: String; PriorityLvl: Integer; Requests: TRequests);
         Destructor Free();
     End;
 
@@ -31,7 +31,7 @@ Implementation
 
 { TUser }
 
-Constructor TUser.Create(Name: Integer; PriorityLvl: Integer; Requests: TRequests);
+Constructor TUser.Create(Name: String; PriorityLvl: Integer; Requests: TRequests);
 Begin
     Name := Name;
     IsProcessActive := False;
