@@ -23,7 +23,7 @@ Type
         IsProcessWait: Boolean;
         ProcessorWaitLength: Integer;
     Public
-        Constructor Create(Name: String; PriorityLvl: Integer; Reqs: TRequests);
+        Constructor Create(UserName: String; Priority: Integer; Reqs: TRequests);
         Destructor Free();
     End;
 
@@ -31,11 +31,11 @@ Implementation
 
 { TUser }
 
-Constructor TUser.Create(Name: String; PriorityLvl: Integer; Reqs: TRequests);
+Constructor TUser.Create(UserName: String; Priority: Integer; Reqs: TRequests);
 Begin
-    Name := Name;
+    Name := UserName;
     IsProcessActive := False;
-    PriorityLvl := PriorityLvl;
+    PriorityLvl := Priority;
     SetLength(Requests, Length(Reqs));
     For Var I := 0 To Length(Requests) - 1 Do
     Begin
