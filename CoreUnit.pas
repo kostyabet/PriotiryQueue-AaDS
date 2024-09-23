@@ -19,6 +19,7 @@ Type
 
     Public
         Constructor Create(ArrayOfUsers: TArrayOfUsers; TickTime: Integer; WaitTime: Integer);
+        Procedure StartWork();
         Destructor Destroy;
     End;
 
@@ -28,6 +29,7 @@ Implementation
 
 Constructor TCore.Create(ArrayOfUsers: TArrayOfUsers; TickTime, WaitTime: Integer);
 Begin
+    Queue := TPriorityQueue<TUser>.Create();
     Users := ArrayOfUsers;
     For Var I := 0 To Length(Users) - 1 Do
     Begin
@@ -42,6 +44,11 @@ Begin
     Queue.Destroy();
     Users := Nil;
     Inherited;
+End;
+
+Procedure TCore.StartWork;
+Begin
+    //main alghoritm
 End;
 
 End.
