@@ -14,6 +14,7 @@ Const
 
 Var
     ArrayOfUsers: TArrayOfUsers;
+    Core: TCore;
 
 Begin
     SetLength(ArrayOfUsers, COUNT_OF_USERS);
@@ -23,8 +24,5 @@ Begin
     ArrayOfUsers[3] := TUser.Create('4', 2, [3, 5, 4, 2, 1, 6, 8, 3]);
     ArrayOfUsers[4] := TUser.Create('5', 3, [2, 3, 2, 1, 4, 2, 3, 4]);
     ArrayOfUsers[5] := TUser.Create('6', 3, [3, 2, 1, 2, 3, 4, 3, 4]);
-
-
-
-
+    Core := TCore.Create(ArrayOfUsers, 3, 5);
 End.
