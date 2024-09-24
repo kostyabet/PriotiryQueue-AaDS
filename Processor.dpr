@@ -24,5 +24,15 @@ Begin
     ArrayOfUsers[3] := TUser.Create('4', 2, [3, 5, 4, 2, 1, 6, 8, 3]);
     ArrayOfUsers[4] := TUser.Create('5', 3, [2, 3, 2, 1, 4, 2, 3, 4]);
     ArrayOfUsers[5] := TUser.Create('6', 3, [3, 2, 1, 2, 3, 4, 3, 4]);
+    //For Var Tick := 1 To 10 Do
+    //    For Var Wait := 0 To 10 Do
+    //    Begin
+    //        Core := TCore.Create(ArrayOfUsers, Tick, Wait);
+    //        Core.StartWork;
+    //        Core.OutputInfo;
+    //        Core.Destroy;
+    //    End;
     Core := TCore.Create(ArrayOfUsers, 3, 5);
+    Readln;
+
 End.
