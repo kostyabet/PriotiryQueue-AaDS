@@ -22,6 +22,8 @@ Type
         //Wait
         IsProcessWait: Boolean;
         ProcessorWaitLength: Integer;
+    Private
+
     Public
         Constructor Create(UserName: String; Priority: Integer; Reqs: TRequests);
         Destructor Free();
