@@ -15,11 +15,16 @@ Type
         Queue: TPriorityQueue<TUser>;
         TickTime: Integer;
         WaitTime: Integer;
+    Type
+        CoreWorkResult = Record
+
+        End;
     Private
 
     Public
         Constructor Create(ArrayOfUsers: TArrayOfUsers; TickTime: Integer; WaitTime: Integer);
-        Procedure StartWork();
+        Procedure StartWork;
+        Procedure OutputInfo;
         Destructor Destroy;
     End;
 
@@ -33,7 +38,7 @@ Begin
     Users := ArrayOfUsers;
     For Var I := 0 To Length(Users) - 1 Do
     Begin
-        Queue.Enqueue(Users[I], Users[I].PriorityLvl);
+        Queue.Enqueue(Users[I], Users[I].Name, Users[I].PriorityLvl);
     End;
     TickTime := TickTime;
     WaitTime := WaitTime;
@@ -44,6 +49,11 @@ Begin
     Queue.Destroy();
     Users := Nil;
     Inherited;
+End;
+
+Procedure TCore.OutputInfo;
+Begin
+
 End;
 
 Procedure TCore.StartWork;
