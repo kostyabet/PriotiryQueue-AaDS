@@ -10,6 +10,7 @@ Uses
 Type
     TPriorityQueueItem<TUser> = Record
         Item: TUser;
+        Name: String;
         Priority: Integer;
     End;
 
@@ -21,7 +22,7 @@ Type
         Constructor Create;
         Destructor Destroy; Override;
 
-        Procedure Enqueue(Const AItem: TUser; APriority: Integer);
+        Procedure Enqueue(AItem: TUser; Name: String; APriority: Integer);
         Function Dequeue: TUser;
         Function Peek: TUser;
         Function IsEmpty: Boolean;
@@ -31,7 +32,7 @@ Implementation
 
 Constructor TPriorityQueue<TUser>.Create;
 Begin
-    FList := TList < TPriorityQueueItem < TUser >>.Create;
+    FList := TList<TPriorityQueueItem<TUser>>.Create;
 End;
 
 Destructor TPriorityQueue<TUser>.Destroy;
@@ -40,11 +41,12 @@ Begin
     Inherited;
 End;
 
-Procedure TPriorityQueue<TUser>.Enqueue(Const AItem: TUser; APriority: Integer);
+Procedure TPriorityQueue<TUser>.Enqueue(AItem: TUser; Name: String; APriority: Integer);
 Var
     NewItem: TPriorityQueueItem<TUser>;
 Begin
     NewItem.Item := AItem;
+    NewItem.Name := Name;
     NewItem.Priority := APriority;
     FList.Add(NewItem);
     SortQueue;
@@ -60,7 +62,7 @@ Begin
         Temp := FList[I];
         J := I - 1;
 
-        While (J >= 0) And (FList[J].Priority < Temp.Priority) Do
+        While (J >= 0) And ((FList[J].Priority < Temp.Priority) Or (FList[J].Name < Temp.Name)) Do
         Begin
             FList[J + 1] := FList[J];
             Dec(J);
