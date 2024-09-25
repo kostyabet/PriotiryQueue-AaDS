@@ -26,13 +26,27 @@ Type
         Function Dequeue: TUser;
         Function Peek: TUser;
         Function IsEmpty: Boolean;
+        Function Contain(AItem: TUser): Boolean;
     End;
 
 Implementation
 
+Function TPriorityQueue<TUser>.Contain(AItem: TUser): Boolean;
+Begin
+    Result := False;
+    For Var I := 0 To FList.Count - 1 Do
+    Begin
+        If (FList[I].Item = AItem) Then
+        Begin
+            Result := True;
+            Exit;
+        End;
+    End;
+End;
+
 Constructor TPriorityQueue<TUser>.Create;
 Begin
-    FList := TList<TPriorityQueueItem<TUser>>.Create;
+    FList := TList < TPriorityQueueItem < TUser >>.Create;
 End;
 
 Destructor TPriorityQueue<TUser>.Destroy;
@@ -62,7 +76,7 @@ Begin
         Temp := FList[I];
         J := I - 1;
 
-        While (J >= 0) And ((FList[J].Priority < Temp.Priority) Or (FList[J].Name < Temp.Name)) Do
+        While (J >= 0) And (FList[J].Priority > Temp.Priority) Do
         Begin
             FList[J + 1] := FList[J];
             Dec(J);
@@ -79,8 +93,8 @@ Begin
         Raise Exception.Create('Priority Queue is empty');
     End;
 
-    Result := FList.Last.Item;
-    FList.Delete(FList.Count - 1);
+    Result := FList.First.Item;
+    FList.Delete(0);
 End;
 
 Function TPriorityQueue<TUser>.Peek: TUser;
